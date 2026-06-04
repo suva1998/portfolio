@@ -8,3 +8,12 @@ Thumbs.db
 
 # Original photo source
 photo.jpg
+
+# Temporary helper scripts (used during development)
+*.py
+pdf_dump.txt
+reconstructed.html
+temp_check.js
+
+# Unused reference images (all figures rendered via Chart.js)
+thesis_images/

@@ -1041,6 +1041,107 @@ img {
 }
 
 /* ==============================
+   Featured Project Card
+   ============================== */
+.project-card-featured {
+    border-color: rgba(0, 212, 255, 0.25) !important;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.06), inset 0 1px 0 rgba(0, 212, 255, 0.1);
+}
+
+.project-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.12), rgba(139, 92, 246, 0.12));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: var(--radius-xl);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 16px;
+}
+
+.project-featured-badge i {
+    font-size: 0.65rem;
+    color: #ffab40;
+}
+
+.project-case-study-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(139, 92, 246, 0.08));
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: var(--radius-xl);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.project-case-study-link:hover {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(139, 92, 246, 0.15));
+    border-color: rgba(0, 212, 255, 0.4);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 212, 255, 0.2);
+}
+
+.project-case-study-link i {
+    transition: transform var(--transition-fast);
+}
+
+.project-case-study-link:hover i {
+    transform: translateX(4px);
+}
+
+/* ==============================
+   Reference Endorsement
+   ============================== */
+.reference-endorsement {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.04), rgba(139, 92, 246, 0.04));
+    border: 1px solid rgba(139, 92, 246, 0.15);
+    border-left: 3px solid var(--accent-purple);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.endorsement-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent-purple);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.endorsement-header i {
+    color: #ffab40;
+    font-size: 0.85rem;
+}
+
+.reference-endorsement blockquote {
+    margin: 0;
+    padding: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+    border: none;
+}
+
+/* ==============================
    Publications
    ============================== */
 .publications-list {
