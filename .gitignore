@@ -6,6 +6,11 @@ Thumbs.db
 # PDF CV (not needed for the website)
 *.pdf
 
+# Allow specific PDFs needed for the website
+!Master_s_thesis_Abstract.pdf
+!20260522_Zeugnis Suvarup Engl.pdf
+!Letter of Recommendation for Mr. Ghosh.pdf
+
 # Original photo source
 photo.jpg
 
