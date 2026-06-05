@@ -1501,6 +1501,129 @@
                 </div>
             </div>
 
+            <!-- Cluster x Mineralization Relationship (Table 5.5) -->
+            <h3 class="results-sub-heading" style="margin-top: 50px;">Cluster × Mineralization Relationship</h3>
+            <div class="results-content reveal" style="margin-bottom: 30px;">
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px;">
+                    Cross-tabulation of geochemical clusters and mineralization types reveals systematic relationships that validate the clustering and enable exploration targeting. The table below presents the mineralization distribution across the identified geochemical domains (clusters identified by the K-Means algorithm).
+                </p>
+            </div>
+
+            <div class="geochem-table-wrapper reveal" style="max-width: 850px; margin: 0 auto 30px;">
+                <div style="background: rgba(10, 14, 26, 0.9); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+                    <!-- Table Header -->
+                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(0, 212, 255, 0.08)); padding: 16px 24px; border-bottom: 1px solid rgba(139, 92, 246, 0.15); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-project-diagram" style="color: var(--accent-purple); font-size: 1rem;"></i>
+                        <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Mineralization Type Distribution</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">— by Geochemical Cluster (Row Percentages)</span>
+                    </div>
+
+                    <!-- Table Content -->
+                    <div style="padding: 0;">
+                        <table id="mineralization-cluster-table" style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.88rem;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 16px 24px; text-align: left; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(139, 92, 246, 0.2); font-weight: 600;">Cluster</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(139, 92, 246, 0.2); font-weight: 600;">Other</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--accent-cyan); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(139, 92, 246, 0.2); font-weight: 600;">Oxidic</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--accent-purple); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(139, 92, 246, 0.2); font-weight: 600;">Sulfidic</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-amber); box-shadow: 0 0 8px rgba(255, 193, 7, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cluster 0</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">66.1%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-cyan); font-weight: 600;">15.7%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-purple); font-weight: 600;">18.2%</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cluster 1</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">100.0%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.0%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.0%</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.3);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cluster 2</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">95.1%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">3.7%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">1.2%</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cluster 3</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">68.3%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-cyan); font-weight: 600;">28.7%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">3.0%</td>
+                                </tr>
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cluster 4</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">100.0%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.0%</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What it Signifies Cards -->
+            <div class="geochem-rules reveal" style="max-width: 900px; margin: 0 auto 50px;">
+                <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 20px; font-weight: 600;"><i class="fas fa-sitemap" style="color: var(--accent-purple); margin-right: 10px;"></i>Mineralization-Domain Relationships</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px;">
+                    
+                    <!-- Cluster 0 -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(255, 193, 7, 0.2); border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent-amber);"></div>
+                        <h5 style="color: var(--accent-amber); margin-bottom: 10px; font-weight: 700;">High Mineralization Domain</h5>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                            <strong style="color: var(--text-primary);">Cluster 0 (68 samples, 11.3%)</strong> shows the strongest <span style="color: var(--accent-purple);">sulfidic mineralization (18.2%)</span> and major <span style="color: var(--accent-cyan);">oxidic mineralization (15.7%)</span>, confirming its status as the primary high-mineralization domain.
+                        </p>
+                    </div>
+
+                    <!-- Cluster 3 -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent-cyan);"></div>
+                        <h5 style="color: var(--accent-cyan); margin-bottom: 10px; font-weight: 700;">Oxidic-Enriched Domain</h5>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                            <strong style="color: var(--text-primary);">Cluster 3 (113 samples, 18.8%)</strong> shows the highest <span style="color: var(--accent-cyan);">oxidic mineralization rate (28.7%)</span> with moderate sulfidic content, indicating dominant oxidation processes in this geochemical environment.
+                        </p>
+                    </div>
+
+                    <!-- Cluster 1 & 4 -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(90, 100, 128, 0.2); border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--text-muted);"></div>
+                        <h5 style="color: var(--text-muted); margin-bottom: 10px; font-weight: 700;">Barren Domains</h5>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                            <strong style="color: var(--text-primary);">Cluster 1 (49 samples, 8.2%) and Cluster 4 (82 samples, 13.7%)</strong> contain only background geochemistry (100% other), representing sterile geological environments.
+                        </p>
+                    </div>
+
+                    <!-- Cluster 2 -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg); padding: 24px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: rgba(255,255,255,0.3);"></div>
+                        <h5 style="color: rgba(255,255,255,0.7); margin-bottom: 10px; font-weight: 700;">Background Domain</h5>
+                        <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                            <strong style="color: var(--text-primary);">Cluster 2 (288 samples, 48.0%)</strong>, despite making up nearly half of the dataset, maintains low mineralization rates (4.9% combined) confirming its role as the regional geochemical background.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Supervised Classification Performance -->
             <h3 class="results-sub-heading" style="margin-top: 50px;">Supervised Classification Performance</h3>
             <div class="results-content reveal" style="margin-bottom: 30px;">
