@@ -2011,3 +2011,52 @@ img {
     border-color: rgba(189, 147, 249, 0.6);
     box-shadow: 0 0 20px rgba(189, 147, 249, 0.15);
 }
+
+/* ==============================
+   Geochemical Domain Characterization
+   ============================== */
+.geochem-section {
+    background: var(--bg-secondary);
+}
+
+.rule-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.geochem-table-wrapper table tr:hover td {
+    transition: background 0.2s ease;
+}
+
+#percentile-table th {
+    white-space: nowrap;
+}
+
+#percentile-table td:first-child {
+    white-space: nowrap;
+}
+
+.narrative-card:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .geochem-rules > div {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .geochem-insight {
+        flex-direction: column;
+    }
+    
+    #percentile-table {
+        font-size: 0.78rem;
+    }
+    
+    #percentile-table th,
+    #percentile-table td {
+        padding: 10px 12px !important;
+    }
+}

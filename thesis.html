@@ -235,10 +235,10 @@
                                 <h4>Hyperspectral Preprocessing</h4>
                             </div>
                             <p class="stage-desc">Radiometric correction, noise filtering, and spectral normalization of
-                                raw hyperspectral image cubes covering 224 spectral bands.</p>
+                                raw hyperspectral image cubes covering 288 spectral bands.</p>
                             <div class="stage-tech">
                                 <span>VNIR-SWIR</span>
-                                <span>224 bands</span>
+                                <span>288 bands</span>
                                 <span>Radiometric correction</span>
                             </div>
                         </div>
@@ -251,7 +251,7 @@
                                 <h4>FastICA Dimensionality Reduction</h4>
                             </div>
                             <p class="stage-desc">Independent Component Analysis extracts statistically independent
-                                spectral features, reducing 224 bands to meaningful geological components.</p>
+                                spectral features, reducing 288 bands to meaningful geological components.</p>
                             <div class="stage-tech">
                                 <span>FastICA</span>
                                 <span>PCA comparison</span>
@@ -1267,6 +1267,364 @@
                 </figure>
             </div>
 
+            <!-- Geochemical Domain Characterization (inline within Results) -->
+            <h3 class="results-sub-heading" style="margin-top: 50px;">Geochemical Domain Characterization</h3>
+            <div class="results-content reveal" style="margin-bottom: 20px;">
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 10px;">
+                    How the 70th percentile approach replaces arbitrary cutoffs with statistically-grounded,
+                    data-driven thresholds to classify mineralization zones as <strong style="color: var(--accent-cyan);">oxidic</strong>,
+                    <strong style="color: var(--accent-purple);">sulfidic</strong>, or <strong style="color: var(--text-muted);">other</strong>.
+                </p>
+            </div>
+
+            <!-- Methodology Narrative -->
+            <div class="geochem-narrative reveal" style="max-width: 900px; margin: 0 auto 50px;">
+                <div class="narrative-card" style="background: var(--gradient-card); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 36px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--gradient-primary);"></div>
+                    <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-lightbulb" style="color: var(--accent-amber);"></i>
+                        Why the 70th Percentile?
+                    </h3>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px;">
+                        Traditional geological methods use <strong style="color: var(--text-primary);">fixed concentration thresholds</strong> set by experts—
+                        but these don't adapt to different geological settings and can produce up to
+                        <strong style="color: #ff5f57;">20–30% false positives</strong>. Our approach uses <em>percentile-based thresholds</em>
+                        that automatically adapt to each dataset's actual elemental distribution.
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 16px;">
+                        For each key element—<strong style="color: var(--accent-cyan);">Fe(Kα)</strong>,
+                        <strong style="color: var(--accent-purple);">Cu(Kα)</strong>, and
+                        <strong style="color: var(--accent-green);">S(Kα)</strong>—we compute the 70th percentile
+                        of the intensity distribution. This threshold marks the boundary where elemental concentrations
+                        become <em>statistically enriched</em> relative to the dataset, without being overly sensitive to
+                        extreme outliers at higher percentiles.
+                    </p>
+                    <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
+                        The percentile formula applied is:
+                    </p>
+                    <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.15); border-radius: var(--radius-sm); padding: 16px 20px; margin: 16px 0 0; font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-cyan); text-align: center; letter-spacing: 0.5px;">
+                        q<sub>p</sub>(X) = inf{ t ∈ ℝ : F<sub>X</sub>(t) ≥ p/100 }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Element Intensity Histograms -->
+            <h3 class="results-sub-heading">Elemental Distribution Analysis</h3>
+            <div class="results-content reveal" style="margin-bottom: 30px;">
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 20px;">
+                    The histograms below show the intensity distributions for the three key discriminating elements.
+                    Notice the <strong style="color: var(--text-primary);">right-skewed distributions</strong> characteristic of geological data—
+                    this is precisely why percentile-based thresholds outperform fixed cutoffs. The 70th percentile
+                    captures the inflection point where concentrations shift from background noise to genuine enrichment.
+                </p>
+            </div>
+
+            <figure class="thesis-figure reveal" data-lightbox style="margin-bottom: 50px;">
+                <img src="images/element_histograms.png" alt="Element intensity histograms for Fe(Ka), Cu(Ka), and S(Ka)"
+                    loading="lazy" style="background: #fff; padding: 10px; border-radius: 8px;">
+                <figcaption>Figure 12: Element intensity histograms for Fe(Kα), Cu(Kα), and S(Kα) — right-skewed
+                    distributions validate the percentile-based thresholding approach</figcaption>
+            </figure>
+
+            <!-- Percentile Thresholds -->
+            <h3 class="results-sub-heading">Percentile Thresholds</h3>
+            <div class="results-content reveal" style="margin-bottom: 30px;">
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px;">
+                    The table below shows the computed percentile thresholds (intensity counts) for each key element.
+                    The <strong style="color: var(--accent-cyan);">70th percentile</strong> was selected as the primary classification
+                    threshold, balancing sensitivity to genuine enrichment against noise from extreme values at higher percentiles.
+                </p>
+            </div>
+
+            <div class="geochem-table-wrapper reveal" style="max-width: 850px; margin: 0 auto 50px;">
+                <div style="background: rgba(10, 14, 26, 0.9); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+                    <!-- Table Header -->
+                    <div style="background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(139, 92, 246, 0.08)); padding: 16px 24px; border-bottom: 1px solid rgba(0, 212, 255, 0.15); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-table" style="color: var(--accent-cyan); font-size: 1rem;"></i>
+                        <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Percentile Thresholds</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">— Intensity Counts</span>
+                    </div>
+
+                    <!-- Table Content -->
+                    <div style="padding: 0;">
+                        <table id="percentile-table" style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.88rem;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 16px 24px; text-align: left; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); font-weight: 600;">
+                                        Element</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--accent-cyan); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); font-weight: 700; background: rgba(0, 212, 255, 0.04);">
+                                        70th <i class="fas fa-star" style="font-size: 0.6rem; vertical-align: super;"></i></th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); font-weight: 600;">
+                                        75th</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); font-weight: 600;">
+                                        90th</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 212, 255, 0.2); font-weight: 600;">
+                                        95th</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Fe(Kα)</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-cyan); font-weight: 700; font-size: 1rem; background: rgba(0, 212, 255, 0.04);">
+                                        1793.60</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        2001.75</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        3029.60</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        3581.75</td>
+                                </tr>
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-purple); box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Cu(Kα)</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-cyan); font-weight: 700; font-size: 1rem; background: rgba(0, 212, 255, 0.04);">
+                                        650.60</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        705.75</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        953.20</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        1106.65</td>
+                                </tr>
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(0,230,118,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-green); box-shadow: 0 0 8px rgba(0, 230, 118, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">S(Kα)</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-cyan); font-weight: 700; font-size: 1rem; background: rgba(0, 212, 255, 0.04);">
+                                        11.00</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        11.75</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        13.00</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">
+                                        14.00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Table Footer Note -->
+                    <div style="padding: 12px 24px; border-top: 1px solid rgba(0, 212, 255, 0.1); background: rgba(0, 212, 255, 0.02);">
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">
+                            <i class="fas fa-star" style="color: var(--accent-cyan); font-size: 0.6rem;"></i>
+                            Primary classification threshold — selected for optimal sensitivity/specificity balance
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Classification Decision Rules -->
+            <h3 class="results-sub-heading">Classification Decision Rules</h3>
+            <div class="geochem-rules reveal" style="max-width: 900px; margin: 0 auto 20px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+
+                    <!-- Oxidic Rule -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(0, 212, 255, 0.2); border-radius: var(--radius-lg); padding: 28px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(0, 212, 255, 0.05)); border: 1.5px solid rgba(0, 212, 255, 0.3); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-fire" style="color: var(--accent-cyan); font-size: 1rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-cyan);">Oxidic</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Iron-Copper Enrichment</span>
+                            </div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(0,212,255,0.1); border-radius: var(--radius-sm); padding: 12px 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary); line-height: 1.8;">
+                            Fe(Kα) <span style="color: var(--accent-cyan);">&gt;</span> <span style="color: var(--accent-cyan);">1793.6</span><br>
+                            Cu(Kα) <span style="color: var(--accent-cyan);">&gt;</span> <span style="color: var(--accent-cyan);">650.6</span><br>
+                            S(Kα) <span style="color: var(--accent-green);">≤</span> <span style="color: var(--accent-green);">11.0</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 14px; line-height: 1.6;">
+                            Iron-copper enrichment with depleted sulfur — characteristic of <strong style="color: var(--text-secondary);">oxidized mineralization zones</strong>.
+                        </p>
+                        <div style="margin-top: 14px;">
+                            <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 10px; background: rgba(0, 212, 255, 0.08); border: 1px solid rgba(0, 212, 255, 0.15); border-radius: 20px; color: var(--accent-cyan);">47 samples (7.8%)</span>
+                        </div>
+                    </div>
+
+                    <!-- Sulfidic Rule -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: var(--radius-lg); padding: 28px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent-purple), var(--accent-magenta));"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05)); border: 1.5px solid rgba(139, 92, 246, 0.3); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-bolt" style="color: var(--accent-purple); font-size: 1rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-purple);">Sulfidic</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Multi-Element Enrichment</span>
+                            </div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(139,92,246,0.1); border-radius: var(--radius-sm); padding: 12px 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-secondary); line-height: 1.8;">
+                            Fe(Kα) <span style="color: var(--accent-cyan);">&gt;</span> <span style="color: var(--accent-cyan);">1793.6</span><br>
+                            Cu(Kα) <span style="color: var(--accent-purple);">&gt;</span> <span style="color: var(--accent-purple);">650.6</span><br>
+                            S(Kα) <span style="color: var(--accent-green);">&gt;</span> <span style="color: var(--accent-green);">11.0</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 14px; line-height: 1.6;">
+                            <strong style="color: var(--text-secondary);">All three elements</strong> exceed the 70th percentile — primary sulfide mineralization with preserved sulfur content.
+                        </p>
+                        <div style="margin-top: 14px;">
+                            <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 10px; background: rgba(139, 92, 246, 0.08); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 20px; color: var(--accent-purple);">16 samples (2.7%)</span>
+                        </div>
+                    </div>
+
+                    <!-- Other Rule -->
+                    <div class="rule-card" style="background: var(--bg-card); border: 1px solid rgba(90, 100, 128, 0.2); border-radius: var(--radius-lg); padding: 28px; position: relative; overflow: hidden; transition: all 0.3s ease;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, rgba(90, 100, 128, 0.6), rgba(90, 100, 128, 0.2));"></div>
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                            <div style="width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(90, 100, 128, 0.15), rgba(90, 100, 128, 0.05)); border: 1.5px solid rgba(90, 100, 128, 0.3); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-mountain" style="color: var(--text-muted); font-size: 1rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-secondary);">Other</h4>
+                                <span style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;">Background Geochemistry</span>
+                            </div>
+                        </div>
+                        <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(90,100,128,0.1); border-radius: var(--radius-sm); padding: 12px 14px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-muted); line-height: 1.8;">
+                            Does not meet either<br>
+                            oxidic or sulfidic<br>
+                            criteria above
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.82rem; margin-top: 14px; line-height: 1.6;">
+                            Background geochemical signatures or <strong style="color: var(--text-secondary);">sub-economic mineralization</strong> levels.
+                        </p>
+                        <div style="margin-top: 14px;">
+                            <span style="font-family: var(--font-mono); font-size: 0.75rem; padding: 3px 10px; background: rgba(90, 100, 128, 0.08); border: 1px solid rgba(90, 100, 128, 0.15); border-radius: 20px; color: var(--text-muted);">537 samples (89.5%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Supervised Classification Performance -->
+            <h3 class="results-sub-heading" style="margin-top: 50px;">Supervised Classification Performance</h3>
+            <div class="results-content reveal" style="margin-bottom: 30px;">
+                <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8; margin-bottom: 24px;">
+                    A Random Forest classifier was trained on the percentile-based mineralization labels to validate
+                    whether these categories represent genuinely separable geochemical populations. The table below
+                    confirms <strong style="color: var(--accent-green);">outstanding predictive performance</strong>, validating the percentile-based approach.
+                </p>
+            </div>
+
+            <div class="geochem-table-wrapper reveal" style="max-width: 850px; margin: 0 auto 30px;">
+                <div style="background: rgba(10, 14, 26, 0.9); border: 1px solid rgba(0, 230, 118, 0.2); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);">
+                    <!-- Table Header -->
+                    <div style="background: linear-gradient(135deg, rgba(0, 230, 118, 0.08), rgba(0, 212, 255, 0.08)); padding: 16px 24px; border-bottom: 1px solid rgba(0, 230, 118, 0.15); display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-trophy" style="color: var(--accent-green); font-size: 1rem;"></i>
+                        <span style="font-weight: 700; font-size: 0.95rem; color: var(--text-primary);">Classification Performance</span>
+                        <span style="color: var(--text-muted); font-size: 0.85rem;">— Random Forest Metrics</span>
+                    </div>
+
+                    <!-- Table Content -->
+                    <div style="padding: 0;">
+                        <table id="rf-performance-table" style="width: 100%; border-collapse: collapse; font-family: var(--font-mono); font-size: 0.88rem;">
+                            <thead>
+                                <tr>
+                                    <th style="padding: 16px 24px; text-align: left; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 230, 118, 0.2); font-weight: 600;">
+                                        Class</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 230, 118, 0.2); font-weight: 600;">
+                                        Precision</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 230, 118, 0.2); font-weight: 600;">
+                                        Recall</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 230, 118, 0.2); font-weight: 600;">
+                                        F1-Score</th>
+                                    <th style="padding: 16px 20px; text-align: center; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid rgba(0, 230, 118, 0.2); font-weight: 600;">
+                                        Support</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Other -->
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(90,100,128,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--text-muted); box-shadow: 0 0 8px rgba(90, 100, 128, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Other</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.99</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">1.00</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.99</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">192</td>
+                                </tr>
+                                <!-- Oxidic -->
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(0,212,255,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px rgba(0, 212, 255, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Oxidic</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.95</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">1.00</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.97</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">19</td>
+                                </tr>
+                                <!-- Sulfidic -->
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(139,92,246,0.03)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; display: flex; align-items: center; gap: 10px;">
+                                        <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent-purple); box-shadow: 0 0 8px rgba(139, 92, 246, 0.4);"></span>
+                                        <span style="color: var(--text-primary); font-weight: 600;">Sulfidic</span>
+                                    </td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">1.00</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-amber); font-weight: 600;">0.57</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary); font-weight: 600;">0.73</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">7</td>
+                                </tr>
+                                <!-- Separator -->
+                                <tr style="border-bottom: 2px solid rgba(0, 230, 118, 0.15);">
+                                    <td colspan="5" style="padding: 0;"></td>
+                                </tr>
+                                <!-- Accuracy -->
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); background: rgba(0, 230, 118, 0.02);">
+                                    <td style="padding: 14px 24px; font-weight: 700; color: var(--accent-green);">
+                                        Accuracy</td>
+                                    <td colspan="2" style="padding: 14px 20px;"></td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 700; font-size: 1rem;">
+                                        0.99</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">218</td>
+                                </tr>
+                                <!-- Macro Avg -->
+                                <tr style="border-bottom: 1px solid rgba(255,255,255,0.04); transition: background 0.2s;" onmouseover="this.style.background='rgba(0,230,118,0.02)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; color: var(--text-muted); font-weight: 600;">
+                                        Macro Avg</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.98</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.86</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">0.90</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">218</td>
+                                </tr>
+                                <!-- Weighted Avg -->
+                                <tr style="transition: background 0.2s;" onmouseover="this.style.background='rgba(0,230,118,0.02)'" onmouseout="this.style.background='transparent'">
+                                    <td style="padding: 14px 24px; color: var(--text-muted); font-weight: 600;">
+                                        Weighted Avg</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.99</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.99</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--accent-green); font-weight: 600;">0.98</td>
+                                    <td style="padding: 14px 20px; text-align: center; color: var(--text-secondary);">218</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary insight -->
+            <div class="geochem-insight reveal" style="max-width: 850px; margin: 20px auto 30px; background: linear-gradient(135deg, rgba(0, 212, 255, 0.04), rgba(139, 92, 246, 0.04)); border: 1px solid rgba(0, 212, 255, 0.12); border-radius: var(--radius-md); padding: 24px 28px; display: flex; align-items: flex-start; gap: 16px;">
+                <div style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: rgba(0, 230, 118, 0.1); border: 1.5px solid rgba(0, 230, 118, 0.25); display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-check-circle" style="color: var(--accent-green); font-size: 1rem;"></i>
+                </div>
+                <div>
+                    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; color: var(--accent-green);">Validation: 99% Classification Accuracy</h4>
+                    <p style="color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin: 0;">
+                        The Random Forest classifier achieves <strong style="color: var(--text-primary);">99% overall accuracy</strong>
+                        with <strong style="color: var(--text-primary);">perfect precision</strong> for sulfidic (1.00) and near-perfect for oxidic (0.95) classes.
+                        The moderate sulfidic recall (0.57) reflects the challenge of detecting rare mineralization events in highly imbalanced
+                        datasets (only 7 test samples), but the <strong style="color: var(--text-primary);">perfect precision ensures zero false positives</strong>
+                        — critical for avoiding costly targeting errors in mineral exploration.
+                    </p>
+                </div>
+            </div>
+
             <h3 class="results-sub-heading">Cross-Modal Integration</h3>
 
             <!-- Statistical Validation Dashboard -->
@@ -1592,6 +1950,12 @@
                     </figure>
                 </div>
             </div>
+    </section>
+
+
+
+
+        </div>
     </section>
 
     <!-- ============================
